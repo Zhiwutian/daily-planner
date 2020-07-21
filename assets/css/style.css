@@ -1,0 +1,32 @@
+.header-row {
+   justify-content: center;
+}
+
+.days-row {
+    justify-content: space-evenly;
+}
+.day {
+    height: 100px;
+    background-color: lightgray;
+    box-shadow: black 1px 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.utility-row {
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-row {
+}
+.table {
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+td, th {
+    border: black 1px solid;
+    padding: 0.5rem;
+    text-align: left;
+}
