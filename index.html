@@ -22,7 +22,7 @@
             <div class="day col-1"><p>Saturday</p></div>
         </section>
         <section class="utility-row row">
-            <button class="button col-2">Add Entry</button>
+            <button id="addEntry" class="button col-2">Add Entry</button>
             <h2 id="eventDay" class="event-day">Scheduled Events For: <span id="daySpan">Monday</span></h2>
         </section>
         <main class="main-row row">
@@ -33,15 +33,13 @@
                         <th>Description:</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>I am filler</td>
-                    </tr>
+                <tbody id="timeAndDescription">
+
                 </tbody>
             </table>
         </main>
     </div>
-    <div class="modal-overlay">
+    <div id="modalOverlay" class="modal-overlay hidden">
         <div class="modal">
             <div class="row modal-title">
                 <h1>Add Entry</h1>
@@ -54,10 +52,10 @@
                     <select id="timeSelect" type="select">
                         <option value="">Time</option>
                     </select>
-                    <input type="submit">
+                    <input id="formSubmit" type="submit">
                 </div>
                 <div class="row entry-text">
-                    <textarea class="text-area" name="" id="" cols="60" rows="10"></textarea>
+                    <textarea class="text-area" name="" id="descriptionText" cols="60" rows="10" placeholder="Description"></textarea>
                 </div>
             </form>
         </div>
