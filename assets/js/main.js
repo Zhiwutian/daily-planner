@@ -10,6 +10,8 @@ var modalTitle = document.getElementById("modalTitle");
 var modalOverlay = document.getElementById("modalOverlay");
 var formSubmit = document.getElementById("formSubmit");
 
+var updateID = null;
+
 var plannerEvents = {
     monday:[],
     tuesday: [],
@@ -61,7 +63,7 @@ function displayPlannerItems(dayToDisplay) {
         updateButton.setAttribute("data-index", index);
         updateButton.addEventListener("click", function(event) {
             modalOverlay.classList.remove("hidden");
-            modalOverlay.setAttribute("update", "true");
+            updateID = parseInt(event.target.getAttribute("data-index"));
             modalTitle.textContent = "Update Entry";
         })
         operations.append(updateButton);
@@ -82,12 +84,13 @@ function showModal(event) {
 function formSubmitter(event) {
     event.preventDefault();
 
-    if(modalTitle.textContent === "Update Entry") {
+    if(updateID !== null) {
         var plannerItem = {
             time: formTime.value,
             description: descriptionText.value
         }
-        plannerEvents[formDay.value.toLowerCase()][elementIndex] = plannerItem;
+        plannerEvents[formDay.value.toLowerCase()][updateID] = plannerItem;
+        updateID = null;
 
     } else {
         var plannerItem = {
