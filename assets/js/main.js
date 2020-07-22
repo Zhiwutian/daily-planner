@@ -5,6 +5,7 @@ var formDay = document.getElementById("daySelect");
 var formTime = document.getElementById("timeSelect");
 var descriptionText = document.getElementById("descriptionText");
 var timeAndDescription = document.getElementById("timeAndDescription");
+var modalTitle = document.getElementById("modalTitle");
 
 var modalOverlay = document.getElementById("modalOverlay");
 var formSubmit = document.getElementById("formSubmit");
@@ -29,7 +30,7 @@ function daySelect(event) {
     daySpan.textContent = event;
     timeAndDescription.innerHTML = "";
     displayPlannerItems(event);
-    return; 
+    return;
     }
     if(event.target.className.includes("days-row")) {
         return;
@@ -54,7 +55,19 @@ function displayPlannerItems(dayToDisplay) {
         var descriptionData = document.createElement("td");
         descriptionData.textContent = plannerEvents[dayToDisplay][index]["description"];
 
-        tableRow.append(timeData, descriptionData);
+        var operations = document.createElement("td");
+        var updateButton = document.createElement("button");
+        updateButton.textContent = "Update";
+        updateButton.setAttribute("data-index", index);
+        updateButton.addEventListener("click", function(event) {
+            modalOverlay.classList.remove("hidden");
+            modalOverlay.setAttribute("update", "true");
+            modalTitle.textContent = "Update Entry";
+        })
+        operations.append(updateButton);
+
+
+        tableRow.append(timeData, descriptionData, operations);
         timeAndDescription.append(tableRow);
 
     }
@@ -63,22 +76,33 @@ function displayPlannerItems(dayToDisplay) {
 
 function showModal(event) {
     modalOverlay.classList.remove("hidden");
+    modalTitle.textContent = "Add Entry"
 }
 
 function formSubmitter(event) {
     event.preventDefault();
 
-    var plannerItem = {
-        time: formTime.value,
-        description: descriptionText.value
+    if(modalTitle.textContent === "Update Entry") {
+        var plannerItem = {
+            time: formTime.value,
+            description: descriptionText.value
+        }
+        plannerEvents[formDay.value.toLowerCase()][elementIndex] = plannerItem;
+
+    } else {
+        var plannerItem = {
+            time: formTime.value,
+            description: descriptionText.value
+        }
+        plannerEvents[formDay.value.toLowerCase()].push(plannerItem);
     }
-    plannerEvents[formDay.value.toLowerCase()].push(plannerItem);
-
-
-
 
     modalOverlay.classList.add("hidden");
     daySelect(formDay.value)
+    formTime.value = "default";
+    formDay.value = "default";
+    descriptionText.value = "";
+
 }
 
 function createFormOptions () {
