@@ -31,6 +31,7 @@
                     <tr>
                         <th class="col-3">Time:</th>
                         <th>Description:</th>
+                        <th>Operations:</th>
                     </tr>
                 </thead>
                 <tbody id="timeAndDescription">
@@ -42,15 +43,15 @@
     <div id="modalOverlay" class="modal-overlay hidden">
         <div class="modal">
             <div class="row modal-title">
-                <h1>Add Entry</h1>
+                <h1 id="modalTitle"></h1>
             </div>
             <form class="form-class" action="">
                 <div class="row entry-selection">
                     <select id="daySelect" type="select">
-                        <option value="">Day</option>
+                        <option value="default">Day</option>
                     </select>
                     <select id="timeSelect" type="select">
-                        <option value="">Time</option>
+                        <option value="default">Time</option>
                     </select>
                     <input id="formSubmit" type="submit">
                 </div>
