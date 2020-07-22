@@ -30,3 +30,45 @@ td, th {
     padding: 0.5rem;
     text-align: left;
 }
+
+.entry-text {
+    display: flex;
+    justify-content: center;
+}
+
+.form-class {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.text-area {
+    width: 45%
+}
+
+.modal-overlay {
+    display: flex;
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-title {
+    display: flex;
+    justify-content: center;
+}
+
+.modal {
+    margin: auto;
+    background-color: cornflowerblue;
+    width: 45%
+}
+
+.entry-selection {
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%
+}
