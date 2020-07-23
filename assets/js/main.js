@@ -16,7 +16,6 @@ var formSubmit = document.getElementById("formSubmit");
 var updateID = null;
 var deleteID = null;
 
-
 var plannerEvents = {
     monday:[],
     tuesday: [],
@@ -27,13 +26,11 @@ var plannerEvents = {
     sunday: []
 }
 
-
 daySection.addEventListener("click", daySelect);
 addEntryButton.addEventListener("click", showModal);
 formSubmit.addEventListener("click", formSubmitter);
 yesButton.addEventListener("click", handleDelete);
 noButton.addEventListener("click", handleDelete)
-
 
 function handleDelete(event) {
     if(event.target.textContent === "Yes") {
@@ -46,7 +43,6 @@ function handleDelete(event) {
     }
 
 }
-
 
 function daySelect(event) {
     if(typeof event === "string") {
@@ -99,9 +95,7 @@ function displayPlannerItems(dayToDisplay) {
 
         tableRow.append(timeData, descriptionData, operations);
         timeAndDescription.append(tableRow);
-
     }
-
 }
 
 function showModal(event) {
