@@ -66,6 +66,25 @@ td, th {
     background-color: cornflowerblue;
     width: 45%
 }
+.delete-modal {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    height: 30%;
+    width: 50%;
+    background-color: cornflowerblue;
+    align-items: center;
+}
+
+.delete-modal-title, .delete-modal-text {
+    display: flex;
+    justify-content: center;
+}
+
+.delete-modal-buttons {
+    display: flex;
+    justify-content: space-around;
+}
 
 .entry-selection {
     display: flex;
