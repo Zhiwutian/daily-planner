@@ -1,4 +1,10 @@
-var daySection = document.getElementById("daySection");
+var monday = document.getElementById("monday");
+var tuesday = document.getElementById("tuesday");
+var wednesday = document.getElementById("wednesday");
+var thursday = document.getElementById("thursday");
+var friday = document.getElementById("friday");
+var saturday = document.getElementById("saturday");
+var sunday = document.getElementById("sunday");
 var daySpan = document.getElementById("daySpan");
 var addEntryButton = document.getElementById("addEntry");
 var formDay = document.getElementById("daySelect");
@@ -16,7 +22,6 @@ var formSubmit = document.getElementById("formSubmit");
 var updateID = null;
 var deleteID = null;
 
-
 var plannerEvents = {
     monday:[],
     tuesday: [],
@@ -27,13 +32,17 @@ var plannerEvents = {
     sunday: []
 }
 
-
-daySection.addEventListener("click", daySelect);
+monday.addEventListener("click", daySelect);
+tuesday.addEventListener("click", daySelect);
+wednesday.addEventListener("click", daySelect);
+thursday.addEventListener("click", daySelect);
+friday.addEventListener("click", daySelect);
+saturday.addEventListener("click", daySelect);
+sunday.addEventListener("click", daySelect);
 addEntryButton.addEventListener("click", showModal);
 formSubmit.addEventListener("click", formSubmitter);
 yesButton.addEventListener("click", handleDelete);
 noButton.addEventListener("click", handleDelete)
-
 
 function handleDelete(event) {
     if(event.target.textContent === "Yes") {
@@ -47,7 +56,6 @@ function handleDelete(event) {
 
 }
 
-
 function daySelect(event) {
     if(typeof event === "string") {
     daySpan.textContent = event;
@@ -55,14 +63,13 @@ function daySelect(event) {
     displayPlannerItems(event);
     return;
     }
-    if(event.target.className.includes("days-row")) {
-        return;
-    }
-    daySpan.textContent = event.target.textContent;
-    displayPlannerItems(event.target.textContent);
+    var day = event.currentTarget.getAttribute("data-day")
+    daySpan.textContent = day;
+    displayPlannerItems(day);
 }
 
 function displayPlannerItems(dayToDisplay) {
+    updatePlansPerDay();
     dayToDisplay = dayToDisplay.toLowerCase();
     if(!plannerEvents[dayToDisplay]) {
         return;
@@ -99,10 +106,18 @@ function displayPlannerItems(dayToDisplay) {
 
         tableRow.append(timeData, descriptionData, operations);
         timeAndDescription.append(tableRow);
-
     }
-
 }
+
+function updatePlansPerDay() {
+
+    for (var day in plannerEvents) {
+        var id = day+"Plans"
+        var dayAmounts = plannerEvents[day].length;
+        document.getElementById(id).textContent = dayAmounts;
+    }
+}
+updatePlansPerDay();
 
 function showModal(event) {
     modalOverlay.classList.remove("hidden");

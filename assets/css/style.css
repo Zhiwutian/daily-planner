@@ -6,12 +6,24 @@
     justify-content: space-evenly;
 }
 .day {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+.plans {
+    display: flex;
+    justify-content: flex-end;
+}
+.day-container {
     height: 100px;
     background-color: lightgray;
     box-shadow: black 1px 1px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.day-container p {
+    margin: 0;
 }
 
 .utility-row {
