@@ -8,9 +8,14 @@ var timeAndDescription = document.getElementById("timeAndDescription");
 var modalTitle = document.getElementById("modalTitle");
 
 var modalOverlay = document.getElementById("modalOverlay");
+var deleteModalOverlay = document.getElementById("deleteModalOverlay")
+var yesButton = document.getElementById("yesButton");
+var noButton = document.getElementById("noButton");
 var formSubmit = document.getElementById("formSubmit");
 
 var updateID = null;
+var deleteID = null;
+
 
 var plannerEvents = {
     monday:[],
@@ -26,6 +31,22 @@ var plannerEvents = {
 daySection.addEventListener("click", daySelect);
 addEntryButton.addEventListener("click", showModal);
 formSubmit.addEventListener("click", formSubmitter);
+yesButton.addEventListener("click", handleDelete);
+noButton.addEventListener("click", handleDelete)
+
+
+function handleDelete(event) {
+    if(event.target.textContent === "Yes") {
+        plannerEvents[daySpan.textContent.toLowerCase()].splice(deleteID, 1)
+        deleteModalOverlay.classList.add("hidden");
+        deleteID = null;
+        displayPlannerItems(daySpan.textContent);
+    } else {
+        deleteModalOverlay.classList.add("hidden");
+    }
+
+}
+
 
 function daySelect(event) {
     if(typeof event === "string") {
@@ -38,7 +59,6 @@ function daySelect(event) {
         return;
     }
     daySpan.textContent = event.target.textContent;
-    timeAndDescription.innerHTML = "";
     displayPlannerItems(event.target.textContent);
 }
 
@@ -47,6 +67,7 @@ function displayPlannerItems(dayToDisplay) {
     if(!plannerEvents[dayToDisplay]) {
         return;
     }
+    timeAndDescription.innerHTML = "";
 
     for(var index = 0; index < plannerEvents[dayToDisplay].length; index++) {
         var tableRow = document.createElement("tr");
@@ -66,7 +87,14 @@ function displayPlannerItems(dayToDisplay) {
             updateID = parseInt(event.target.getAttribute("data-index"));
             modalTitle.textContent = "Update Entry";
         })
-        operations.append(updateButton);
+        var deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.setAttribute("data-index", index)
+        deleteButton.addEventListener("click", function(event) {
+            deleteModalOverlay.classList.remove("hidden");
+            deleteID = parseInt(event.target.getAttribute("data-index"));
+        })
+        operations.append(updateButton, deleteButton);
 
 
         tableRow.append(timeData, descriptionData, operations);
