@@ -13,13 +13,62 @@
             <h1>Weekly Planner</h1>
         </header>
         <section id="daySection" class="row days-row">
-            <div class="day col-1"><p>Sunday</p></div>
-            <div class="day col-1"><p>Monday</p></div>
-            <div class="day col-1"><p>Tuesday</p></div>
-            <div class="day col-1"><p>Wednesday</p></div>
-            <div class="day col-1"><p>Thursday</p></div>
-            <div class="day col-1"><p>Friday</p></div>
-            <div class="day col-1"><p>Saturday</p></div>
+            <div id="sunday" class="day-container col-1" data-day="Sunday">
+                <div class="day">
+                    <p>Sunday</p>
+                </div>
+                <div class="plans">
+                    <p id="sundayPlans">0</p>
+                </div>
+            </div>
+            <div id="monday" class="day-container col-1" data-day="Monday">
+                <div class="day">
+                    <p>Monday</p>
+                </div>
+                <div class="plans">
+                    <p id="mondayPlans">0</p>
+                </div>
+            </div>
+            <div id="tuesday" class="day-container col-1" data-day="Tuesday">
+                <div class="day">
+                    <p>Tuesday</p>
+                </div>
+                <div class="plans">
+                    <p id="tuesdayPlans">0</p>
+                </div>
+            </div>
+            <div id="wednesday" class="day-container col-1" data-day="Wednesday">
+                <div class="day">
+                    <p>Wednesday</p>
+                </div>
+                <div class="plans">
+                    <p id="wednesdayPlans">0</p>
+                </div>
+            </div>
+            <div id="thursday" class="day-container col-1" data-day="Thursday">
+                <div class="day">
+                    <p>Thursday</p>
+                </div>
+                <div class="plans">
+                    <p id="thursdayPlans">0</p>
+                </div>
+            </div>
+            <div id="friday" class="day-container col-1" data-day="Friday">
+                <div class="day">
+                    <p>Friday</p>
+                </div>
+                <div class="plans">
+                    <p id="fridayPlans">0</p>
+                </div>
+            </div>
+            <div id="saturday" class="day-container col-1" data-day="Saturday">
+                <div class="day">
+                    <p>Saturday</p>
+                </div>
+                <div class="plans">
+                    <p id="saturdayPlans">0</p>
+                </div>
+            </div>
         </section>
         <section class="utility-row row">
             <button id="addEntry" class="button col-2">Add Entry</button>
