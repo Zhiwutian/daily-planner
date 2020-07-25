@@ -12,7 +12,6 @@ var formTime = document.getElementById("timeSelect");
 var descriptionText = document.getElementById("descriptionText");
 var timeAndDescription = document.getElementById("timeAndDescription");
 var modalTitle = document.getElementById("modalTitle");
-
 var modalOverlay = document.getElementById("modalOverlay");
 var deleteModalOverlay = document.getElementById("deleteModalOverlay")
 var yesButton = document.getElementById("yesButton");
@@ -20,6 +19,7 @@ var noButton = document.getElementById("noButton");
 var formSubmit = document.getElementById("formSubmit");
 
 var updateID = null;
+var updateDay = null;
 var deleteID = null;
 
 var plannerEvents = {
@@ -69,7 +69,6 @@ function daySelect(event) {
 }
 
 function displayPlannerItems(dayToDisplay) {
-    updatePlansPerDay();
     dayToDisplay = dayToDisplay.toLowerCase();
     if(!plannerEvents[dayToDisplay]) {
         return;
@@ -89,9 +88,11 @@ function displayPlannerItems(dayToDisplay) {
         var updateButton = document.createElement("button");
         updateButton.textContent = "Update";
         updateButton.setAttribute("data-index", index);
+        updateButton.setAttribute("data-day", dayToDisplay)
         updateButton.addEventListener("click", function(event) {
             modalOverlay.classList.remove("hidden");
             updateID = parseInt(event.target.getAttribute("data-index"));
+            updateDay = event.target.getAttribute("data-day")
             modalTitle.textContent = "Update Entry";
         })
         var deleteButton = document.createElement("button");
@@ -102,15 +103,14 @@ function displayPlannerItems(dayToDisplay) {
             deleteID = parseInt(event.target.getAttribute("data-index"));
         })
         operations.append(updateButton, deleteButton);
-
-
         tableRow.append(timeData, descriptionData, operations);
         timeAndDescription.append(tableRow);
     }
+    updatePlansPerDay();
+
 }
 
 function updatePlansPerDay() {
-
     for (var day in plannerEvents) {
         var id = day+"Plans"
         var dayAmounts = plannerEvents[day].length;
@@ -133,6 +133,8 @@ function formSubmitter(event) {
             description: descriptionText.value
         }
         plannerEvents[formDay.value.toLowerCase()][updateID] = plannerItem;
+        plannerEvents[updateDay.toLowerCase()].splice(updateID);
+        updateDay = null;
         updateID = null;
 
     } else {
@@ -169,5 +171,4 @@ function createFormOptions () {
         document.getElementById("timeSelect").appendChild(option);
     }
 }
-
 createFormOptions();
